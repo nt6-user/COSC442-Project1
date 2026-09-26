@@ -100,6 +100,7 @@ public class PropertyCell extends Cell {
 	/**
 	 * Executes the action when a player lands on the property, charging rent if owned by another player.
 	 */
+	@Override 
 	public void playAction() {
 		Player currentPlayer = null;
 		if(!isAvailable()) {
