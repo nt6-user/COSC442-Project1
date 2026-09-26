@@ -29,7 +29,10 @@ public class GameBoard {
      * Adds a Card to the appropriate deck based on its type (Chance or Community Chest).
      * @param card the Card object to be added
      */
-    public void addCard(Card card) {
+    /** 
+	 * @param card
+	 */
+	public void addCard(Card card) {
         if(card.getCardType() == Card.TYPE_CC) {
             communityChestCards.add(card);
         } else {
@@ -45,6 +48,9 @@ public class GameBoard {
 	 * Adds a general Cell to the game board.
 	 * @param cell the Cell object to be added
 	 */
+	/** 
+	 * @param cell
+	 */
 	public void addCell(Cell cell) {
 		cells.add(cell);
 	}
@@ -56,6 +62,9 @@ public class GameBoard {
 	/**
 	 * Adds a PropertyCell to the game board and updates the count of properties for its color group.
 	 * @param cell the PropertyCell object to be added
+	 */
+	/** 
+	 * @param cell
 	 */
 	public void addCell(PropertyCell cell) {
 		String colorGroup = cell.getColorGroup();
@@ -72,7 +81,10 @@ public class GameBoard {
      * Draws the top Community Chest card, returns it, then places it at the bottom of the deck.
      * @return the drawn Community Chest Card
      */
-    public Card drawCCCard() {
+    /** 
+	 * @return Card
+	 */
+	public Card drawCCCard() {
         Card card = (Card)communityChestCards.get(0);
         communityChestCards.remove(0);
         addCard(card);
@@ -87,7 +99,10 @@ public class GameBoard {
      * Draws the top Chance card, returns it, then places it at the bottom of the deck.
      * @return the drawn Chance Card
      */
-    public Card drawChanceCard() {
+    /** 
+	 * @return Card
+	 */
+	public Card drawChanceCard() {
         Card card = (Card)chanceCards.get(0);
         chanceCards.remove(0);
         addCard(card);
@@ -104,6 +119,10 @@ public class GameBoard {
 	 * @param newIndex the index of the desired Cell
 	 * @return the Cell at the specified index
 	 */
+	/** 
+	 * @param newIndex
+	 * @return Cell
+	 */
 	public Cell getCell(int newIndex) {
 		return (Cell)cells.get(newIndex);
 	}
@@ -115,6 +134,9 @@ public class GameBoard {
 	/**
 	 * Returns the total number of cells present on the game board.
 	 * @return the number of cells on the board
+	 */
+	/** 
+	 * @return int
 	 */
 	public int getCellNumber() {
 		return cells.size();
@@ -129,6 +151,10 @@ public class GameBoard {
 	 * Returns an array of all PropertyCells belonging to a specified color group (monopoly).
 	 * @param color the color group name to query
 	 * @return an array of PropertyCells in the specified monopoly group
+	 */
+	/** 
+	 * @param color
+	 * @return PropertyCell[]
 	 */
 	public PropertyCell[] getPropertiesInMonopoly(String color) {
 		PropertyCell[] monopolyCells = 
@@ -157,6 +183,10 @@ public class GameBoard {
 	 * @param name the name of the color group
 	 * @return the number of properties in the color group
 	 */
+	/** 
+	 * @param name
+	 * @return int
+	 */
 	public int getPropertyNumberForColor(String name) {
 		Integer number = (Integer)colorGroups.get(name);
 		if(number != null) {
@@ -174,6 +204,10 @@ public class GameBoard {
 	 * Searches for and returns the Cell with the specified name.
 	 * @param string the name of the cell to find
 	 * @return the Cell matching the name or null if not found
+	 */
+	/** 
+	 * @param string
+	 * @return Cell
 	 */
 	public Cell queryCell(String string) {
 		for(int i = 0; i < cells.size(); i++){
@@ -194,6 +228,10 @@ public class GameBoard {
 	 * Returns the index of the Cell with the specified name.
 	 * @param string the name of the cell to find
 	 * @return the index of the matching Cell or -1 if not found
+	 */
+	/** 
+	 * @param string
+	 * @return int
 	 */
 	public int queryCellIndex(String string){
 		for(int i = 0; i < cells.size(); i++){

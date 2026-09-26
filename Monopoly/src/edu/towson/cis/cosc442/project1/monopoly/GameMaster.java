@@ -17,6 +17,9 @@ public class GameMaster {
 	private int utilDiceRoll;
 	private boolean testMode;
 
+	/** 
+	 * @return GameMaster
+	 */
 	public static GameMaster instance() {
 		if(gameMaster == null) {
 			gameMaster = new GameMaster();
@@ -33,7 +36,10 @@ public class GameMaster {
         gui.showBuyHouseDialog(getCurrentPlayer());
     }
 
-    public Card btnDrawCardClicked() {
+    /** 
+	 * @return Card
+	 */
+	public Card btnDrawCardClicked() {
         gui.setDrawCardEnabled(false);
         CardCell cell = (CardCell)getCurrentPlayer().getPosition();
         Card card = null;
@@ -121,59 +127,100 @@ public class GameMaster {
         }
     }
 
-    public void completeTrade(TradeDeal deal) {
+    /** 
+	 * @param deal
+	 */
+	public void completeTrade(TradeDeal deal) {
         Player seller = getPlayer(deal.getPlayerIndex());
         Cell property = gameBoard.queryCell(deal.getPropertyName());
         seller.sellProperty(property, deal.getAmount());
         getCurrentPlayer().buyProperty(property, deal.getAmount());
     }
 
-    public Card drawCCCard() {
+    /** 
+	 * @return Card
+	 */
+	public Card drawCCCard() {
         return gameBoard.drawCCCard();
     }
 
-    public Card drawChanceCard() {
+    /** 
+	 * @return Card
+	 */
+	public Card drawChanceCard() {
         return gameBoard.drawChanceCard();
     }
 
 	
+	/** 
+	 * @return Player
+	 */
 	public Player getCurrentPlayer() {
 		return getPlayer(turn);
 	}
     
-    public int getCurrentPlayerIndex() {
+    /** 
+	 * @return int
+	 */
+	public int getCurrentPlayerIndex() {
         return turn;
     }
 
+	/** 
+	 * @return GameBoard
+	 */
 	public GameBoard getGameBoard() {
 		return gameBoard;
 	}
 
-    public MonopolyGUI getGUI() {
+    /** 
+	 * @return MonopolyGUI
+	 */
+	public MonopolyGUI getGUI() {
         return gui;
     }
 
+	/** 
+	 * @return int
+	 */
 	public int getInitAmountOfMoney() {
 		return initAmountOfMoney;
 	}
 	
+	/** 
+	 * @return int
+	 */
 	public int getNumberOfPlayers() {
 		return players.size();
 	}
 
-    public int getNumberOfSellers() {
+    /** 
+	 * @return int
+	 */
+	public int getNumberOfSellers() {
         return players.size() - 1;
     }
 
+	/** 
+	 * @param index
+	 * @return Player
+	 */
 	public Player getPlayer(int index) {
 		return (Player)players.get(index);
 	}
 	
+	/** 
+	 * @param player
+	 * @return int
+	 */
 	public int getPlayerIndex(Player player) {
 		return players.indexOf(player);
 	}
 
-    public ArrayList<Player> getSellerList() {
+    /** 
+	 * @return ArrayList<Player>
+	 */
+	public ArrayList<Player> getSellerList() {
         ArrayList<Player> sellers = new ArrayList<Player>();
         for (Iterator<Player> iter = players.iterator(); iter.hasNext();) {
             Player player = (Player) iter.next();
@@ -182,19 +229,33 @@ public class GameMaster {
         return sellers;
     }
 
+	/** 
+	 * @return int
+	 */
 	public int getTurn() {
 		return turn;
 	}
 
+	/** 
+	 * @return int
+	 */
 	public int getUtilDiceRoll() {
 		return this.utilDiceRoll;
 	}
 
+	/** 
+	 * @param playerIndex
+	 * @param diceValue
+	 */
 	public void movePlayer(int playerIndex, int diceValue) {
 		Player player = (Player)players.get(playerIndex);
 		movePlayer(player, diceValue);
 	}
 	
+	/** 
+	 * @param player
+	 * @param diceValue
+	 */
 	public void movePlayer(Player player, int diceValue) {
 		Cell currentPosition = player.getPosition();
 		int positionIndex = gameBoard.queryCellIndex(currentPosition.getName());
@@ -208,6 +269,9 @@ public class GameMaster {
 		updateGUI();
 	}
 
+	/** 
+	 * @param player
+	 */
 	public void playerMoved(Player player) {
 		Cell cell = player.getPosition();
 		int playerIndex = getPlayerIndex(player);
@@ -234,6 +298,9 @@ public class GameMaster {
 		turn = 0;
 	}
 	
+	/** 
+	 * @return int[]
+	 */
 	public int[] rollDice() {
 		if(testMode) {
 			return gui.getDiceRoll();
@@ -246,6 +313,9 @@ public class GameMaster {
 		}
 	}
 	
+	/** 
+	 * @param player
+	 */
 	public void sendToJail(Player player) {
 	    int oldPosition = gameBoard.queryCellIndex(getCurrentPlayer().getPosition().getName());
 		player.setPosition(gameBoard.queryCell("Jail"));
@@ -257,6 +327,9 @@ public class GameMaster {
 		        jailIndex);
 	}
     
+	/** 
+	 * @param enabled
+	 */
 	private void setAllButtonEnabled(boolean enabled) {
 		gui.setRollDiceEnabled(enabled);
 		gui.setPurchasePropertyEnabled(enabled);
@@ -267,18 +340,30 @@ public class GameMaster {
         gui.setGetOutOfJailEnabled(enabled);
 	}
 
+	/** 
+	 * @param board
+	 */
 	public void setGameBoard(GameBoard board) {
 		this.gameBoard = board;
 	}
 	
+	/** 
+	 * @param gui
+	 */
 	public void setGUI(MonopolyGUI gui) {
 		this.gui = gui;
 	}
 
+	/** 
+	 * @param money
+	 */
 	public void setInitAmountOfMoney(int money) {
 		this.initAmountOfMoney = money;
 	}
 
+	/** 
+	 * @param number
+	 */
 	public void setNumberOfPlayers(int number) {
 		players.clear();
 		for(int i =0;i<number;i++) {
@@ -288,6 +373,9 @@ public class GameMaster {
 		}
 	}
 
+	/** 
+	 * @param diceRoll
+	 */
 	public void setUtilDiceRoll(int diceRoll) {
 		this.utilDiceRoll = diceRoll;
 	}
@@ -318,6 +406,9 @@ public class GameMaster {
 		this.utilDiceRoll = gui.showUtilDiceRoll();
 	}
 
+	/** 
+	 * @param b
+	 */
 	public void setTestMode(boolean b) {
 		testMode = b;
 	}

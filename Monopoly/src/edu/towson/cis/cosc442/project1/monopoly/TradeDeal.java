@@ -5,18 +5,30 @@ public class TradeDeal {
     private int playerIndex;
     private String propertyName;
 
+    /** 
+     * @return int
+     */
     public int getAmount() {
         return amount;
     }
     
+    /** 
+     * @return int
+     */
     public int getPlayerIndex() {
         return playerIndex;
     }
     
+    /** 
+     * @return String
+     */
     public String getPropertyName() {
         return propertyName;
     }
     
+    /** 
+     * @return String
+     */
     public String makeMessage() {
         String message = GameMaster.instance().getCurrentPlayer() + 
         	" wishes to purchase " +
@@ -28,14 +40,23 @@ public class TradeDeal {
         return message;
     }
     
+    /** 
+     * @param amount
+     */
     public void setAmount(int amount) {
         this.amount = amount;
     }
     
+    /** 
+     * @param propertyName
+     */
     public void setPropertyName(String propertyName) {
         this.propertyName = propertyName;
     }
     
+    /** 
+     * @param playerIndex
+     */
     public void setSellerIndex(int playerIndex) {
         this.playerIndex = playerIndex;
     }
